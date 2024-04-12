@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.example.MyBatisPractice.repository.MansionRepository">
+
+	<!-- Section4_12：全件取得 -->
+	<select id="selectAll" resultType="Mansion">
+    <![CDATA[
+SELECT
+      id
+    , name
+    , address
+    , station
+    , floor_plan_id AS floorPlanId
+    , building_date AS buildingDate
+    , status
+FROM
+    mansion
+    ]]>
+	</select>
+
+	<!-- Section5_15：１件取得 -->
+	<select id="selectById" resultType="Mansion" parameterType="int">
+    <![CDATA[
+SELECT
+      id
+    , name
+    , address
+    , station
+    , floor_plan_id AS floorPlanId
+    , building_date AS buildingDate
+    , status
+FROM
+    mansion
+WHERE
+	id = #{id}
+    ]]>
+	</select>
+
+	<!-- Section6_16：if tag を使用した取得 -->
+	<select id="selectByStatusBuildingDate" resultType="Mansion">
+    <![CDATA[
+SELECT
+      id
+    , name
+    , address
+    , station
+    , floor_plan_id AS floorPlanId
+    , building_date AS buildingDate
+    , status
+FROM
+    mansion
+WHERE
+	status = #{status}
+    ]]>
+    <if test="buildingDate != null">
+		<![CDATA[
+		AND building_date = #{buildingDate}
+		]]>
+	</if>
+	</select>
+
+	<!-- Section6_17：もし～なら、そうでなければ・・・？ -->
+	<select id="selectByFloorPlanIdBuildingDateStatus" resultType="Mansion">
+SELECT
+      id
+    , name
+    , address
+    , station
+    , floor_plan_id AS floorPlanId
+    , building_date AS buildingDate
+    , status
+FROM
+    mansion
+WHERE
+	<choose>
+		<!-- 【java の if 文のイメージ】if(){ -->
+		<when test="floorPlanId != null">
+			floor_plan_id = #{floorPlanId}
+		</when>
+		<!-- 【java の if 文のイメージ】} else if(){ -->
+		<when test="buildingDate != null">
+			building_date >= #{buildingDate}
+		</when>
+		<!-- 【java の if 文のイメージ】} else { -->
+		<otherwise>
+			status = true
+		</otherwise>
+		<!-- 【java の if 文のイメージ】} -->
+	</choose>
+	</select>
+
+	<!-- Section6_18()：IN 句（ランダムな値を指定） -->
+	<select id="selectByIdIN" resultType="Mansion">
+SELECT
+      id
+    , name
+    , address
+    , station
+    , floor_plan_id AS floorPlanId
+    , building_date AS buildingDate
+    , status
+FROM
+    mansion
+WHERE
+	id IN
+	<foreach item="idList" collection="list" open="(" separator="," close=")">
+		#{idList}
+	</foreach>
+	</select>
+
+	<!-- Section6_19：○○を含む -->
+	<select id="selectByStationLike" resultType="Mansion">
+		<!-- _parameter または parameter でも両方ちゃんと動く。推奨は、前者の模様。 -->
+		<!-- <bind name="bindName1" value="'%' + _parameter + '%'" /> -->
+		<bind name="bindName1" value="'%' + parameter + '%'" />
+SELECT
+      id
+    , name
+    , address
+    , station
+    , floor_plan_id AS floorPlanId
+    , building_date AS buildingDate
+    , status
+FROM
+    mansion
+WHERE
+	station LIKE #{bindName1}
+	</select>
+
+	<!-- Section6_20()：TRIM（動的 SQL）ちょっとややこしいけど使えると便利！ -->
+	<select id="selectByNameStation" resultType="Mansion">
+SELECT
+      id
+    , name
+    , address
+    , station
+    , floor_plan_id AS floorPlanId
+    , building_date AS buildingDate
+    , status
+FROM
+    mansion
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="name!=null">
+			name=#{name}
+		</if>	
+		<if test="station!=null">
+			AND station=#{station}
+		</if>	
+	</trim>
+	</select>
+
+	<!-- Section7_21()：INSERT レコードを挿入する -->
+	<insert id="insert_01" parameterType="Mansion">
+INSERT INTO mansion( 
+      name
+    , address
+    , station
+    , floor_plan_id
+    , building_date
+    , status
+) 
+VALUES ( 
+      #{name}
+    , #{address}
+    , #{station}
+    , #{floorPlanId}
+    , #{buildingDate}
+    , #{status}
+)
+	</insert>
+
+	<!-- Section7_22()：UPDATE レコードを更新する -->
+	<update id="update_01" parameterType="Mansion">
+UPDATE mansion 
+<set>
+	<if test="name != null">
+		name = #{name},
+	</if>
+	<if test="address != null">
+		address = #{address},
+	</if>
+	<if test="station != null">
+		station = #{station}
+	</if>
+</set>
+WHERE
+    id = #{id}
+	</update>
+
+	<!-- Section8_24：association（１対１） -->
+	<resultMap id="mansionResult" type="Mansion">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="address" column="address" />
+		<result property="station" column="station" />
+		<result property="floorPlanId" column="floor_plan_id" />
+		<result property="buildingDate" column="building_date" />
+		<result property="status" column="status" />
+
+		<association property="floorPlan" javaType="FloorPlan">
+			<id property="idid" column="idid" />
+			<result property="floorPlanName" column="floor_plan_name" />
+		</association>
+	</resultMap>
+
+	<!-- Section8_24：association（１対１） -->
+	<select id="selectByIdWithFloorPlan" resultMap="mansionResult">
+SELECT
+		m.id
+	,	m.name
+	,	m.address
+	,	m.station
+	,	m.floor_plan_id
+	,	m.building_date
+	,	m.status
+	,	f.idid
+	,	f.floor_plan_name
+FROM
+	mansion m INNER JOIN floor_plan f ON m.floor_plan_id = f.idid
+WHERE
+	m.id = #{id}
+	</select>
+</mapper>

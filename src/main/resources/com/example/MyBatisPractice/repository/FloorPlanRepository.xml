@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.example.MyBatisPractice.repository.FloorPlanRepository">
+
+	<!-- Section8：<resultMap> 複数のテーブルを結合する！複雑だけど、ゆっくり学習しよう！ -->
+
+	<!-- Section8_23：collection（１対多） -->
+	<resultMap id="floorPlanResult" type="FloorPlan">
+		<!-- 主キー -->
+		<id property="idid" column="idid" />
+		
+		<!-- 主キー以外 -->
+		<result property="floorPlanName" column="floor_plan_name" />
+		
+		<collection property="mansions" ofType="Mansion">
+			<id property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="address" column="address" />
+			<result property="station" column="station" />
+			<result property="floorPlanId" column="floor_plan_id" />
+			<result property="buildingDate" column="building_date" />
+			<result property="status" column="status" />
+		</collection>
+	</resultMap>
+	
+	<!-- Section8_23：collection（１対多） -->
+	<select id="selectByFloorPlanIdWithMansion" resultMap="floorPlanResult" >
+SELECT
+		m.id
+	,	m.name
+	,	m.address
+	,	m.station
+	,	m.floor_plan_id
+	,	m.building_date
+	,	m.status
+	,	f.idid
+	,	f.floor_plan_name
+FROM
+	mansion m INNER JOIN floor_plan f ON m.floor_plan_id = f.idid
+WHERE
+	m.floor_plan_id = #{id}
+	</select>
+
+</mapper>
