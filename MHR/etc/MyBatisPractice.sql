@@ -1,9 +1,9 @@
-DROP TABLE mansion;
-DROP TABLE floor_plan;
+DROP TABLE IF EXISTS mansion;
+DROP TABLE IF EXISTS floor_plan;
 
 CREATE TABLE floor_plan
 (
-   idid serial PRIMARY KEY,
+   id serial PRIMARY KEY,
    floor_plan_name VARCHAR (100)
 );
 

@@ -10,7 +10,7 @@
 	<!-- Section8_23：collection（１対多） -->
 	<resultMap id="floorPlanResult" type="FloorPlan">
 		<!-- 主キー -->
-		<id property="idid" column="idid" />
+		<id property="id" column="id" />
 		
 		<!-- 主キー以外 -->
 		<result property="floorPlanName" column="floor_plan_name" />
@@ -36,10 +36,10 @@ SELECT
 	,	m.floor_plan_id
 	,	m.building_date
 	,	m.status
-	,	f.idid
+	,	f.id
 	,	f.floor_plan_name
 FROM
-	mansion m INNER JOIN floor_plan f ON m.floor_plan_id = f.idid
+	mansion m INNER JOIN floor_plan f ON m.floor_plan_id = f.id
 WHERE
 	m.floor_plan_id = #{id}
 	</select>

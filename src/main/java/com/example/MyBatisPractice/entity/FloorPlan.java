@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class FloorPlan implements Serializable {
 
-	private Integer idid;
+	private Integer id;
 	private String floorPlanName;
 
 	// １対多の多側の為、List<Mansion> とする。 

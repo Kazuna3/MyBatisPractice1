@@ -200,7 +200,7 @@ WHERE
 		<result property="status" column="status" />
 
 		<association property="floorPlan" javaType="FloorPlan">
-			<id property="idid" column="idid" />
+			<id property="id" column="id" />
 			<result property="floorPlanName" column="floor_plan_name" />
 		</association>
 	</resultMap>
@@ -215,10 +215,10 @@ SELECT
 	,	m.floor_plan_id
 	,	m.building_date
 	,	m.status
-	,	f.idid
+	,	f.id
 	,	f.floor_plan_name
 FROM
-	mansion m INNER JOIN floor_plan f ON m.floor_plan_id = f.idid
+	mansion m INNER JOIN floor_plan f ON m.floor_plan_id = f.id
 WHERE
 	m.id = #{id}
 	</select>
