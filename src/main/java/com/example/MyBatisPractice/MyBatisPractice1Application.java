@@ -17,7 +17,11 @@ import com.example.MyBatisPractice.repository.MansionRepository;
 import lombok.AllArgsConstructor;
 
 @SpringBootApplication
-//次の @MapperScan は、MyBatis を利用する上で必要になるアノテーションである。
+// @MapperScan は、MyBatis の Mapper Repository の Interface が
+// 配置されているパス（FQCN）を引数に書くことで、Mapper Repository の
+// インターフェースを実装し、インジェクションしてもらえるようになる。
+// このアノテーションを使わない場合は、Mapper Repository の Interface に、
+// @Mapper アノテーションを付与する必要が生じる。
 @MapperScan("com.example.MyBatisPractice.repository")
 @AllArgsConstructor // Lombokのアノテーション。全フィールドに値をセットするコンストラクタを自動生成する。
 public class MyBatisPractice1Application {
@@ -33,22 +37,28 @@ public class MyBatisPractice1Application {
 		ApplicationContext context = SpringApplication.run(MyBatisPractice1Application.class, args);
 		MyBatisPractice1Application app = context.getBean(MyBatisPractice1Application.class);
 
-		app.executeSection4_12();
-		app.executeSection5_15();
-		app.executeSection6_16_1();
-		app.executeSection6_16_2();
-		app.executeSection6_17_1();
-		app.executeSection6_17_2();
-		app.executeSection6_17_3();
-		app.executeSection6_17_4();
-		app.executeSection6_18();
-		app.executeSection6_19();
-		app.executeSection6_20();
+		app.execute();
+
+	}
+
+	private void execute() {
+
+		executeSection4_12();
+		executeSection5_15();
+		executeSection6_16_1();
+		executeSection6_16_2();
+		executeSection6_17_1();
+		executeSection6_17_2();
+		executeSection6_17_3();
+		executeSection6_17_4();
+		executeSection6_18();
+		executeSection6_19();
+		executeSection6_20();
 		// 次行は、レコードが追加されるのでコメントアウトしている。
-		// app.executeSection7_21();
-		app.executeSection7_22();
-		app.executeSection8_23();
-		app.executeSection8_24();
+		// executeSection7_21();
+		executeSection7_22();
+		executeSection8_23();
+		executeSection8_24();
 
 	}
 
@@ -56,7 +66,16 @@ public class MyBatisPractice1Application {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection4_12()");
 		List<Mansion> list = mansionRepository.selectAll();
-		System.out.println(list);
+		list.forEach(mansion -> System.out.println(
+				"id［" + mansion.getId() + "］, " +
+						"name［" + mansion.getName() + "］, " +
+						"address［" + mansion.getAddress() + "］, " +
+						"station［" + mansion.getStation() + "］, " +
+						"floorPlanId［" + mansion.getFloorPlanId() + "］, " +
+						"buildingDate［" + mansion.getBuildingDate() + "］, " +
+						"status［" + mansion.getStatus() + "］, " +
+						"floorPlan［" + mansion.getFloorPlan() + "］"));
+		// System.out.println(list);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection4_12()");
 
 	}
@@ -65,7 +84,16 @@ public class MyBatisPractice1Application {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection5_15()");
 		Mansion mansion = mansionRepository.selectById(1);
-		System.out.println(mansion);
+		System.out.println(
+				"id［" + mansion.getId() + "］, " +
+						"name［" + mansion.getName() + "］, " +
+						"address［" + mansion.getAddress() + "］, " +
+						"station［" + mansion.getStation() + "］, " +
+						"floorPlanId［" + mansion.getFloorPlanId() + "］, " +
+						"buildingDate［" + mansion.getBuildingDate() + "］, " +
+						"status［" + mansion.getStatus() + "］, " +
+						"floorPlan［" + mansion.getFloorPlan() + "］");
+		// System.out.println(mansion);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection5_15()");
 
 	}
