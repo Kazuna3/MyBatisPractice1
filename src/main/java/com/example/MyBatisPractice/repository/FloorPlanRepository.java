@@ -16,4 +16,10 @@ public interface FloorPlanRepository {
 	// public List<FloorPlan> selectById(Integer id);
 	public FloorPlan selectById(Integer id);
 
+	public List<FloorPlan> selectByIdIN(List<Integer> idList);
+
+	public List<FloorPlan> selectByFloorPlanNameLike(String floorPlanName);
+
+	public List<FloorPlan> selectByTrim(FloorPlan floorPlan);
+
 }

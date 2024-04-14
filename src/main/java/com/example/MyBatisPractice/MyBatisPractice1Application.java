@@ -45,6 +45,10 @@ public class MyBatisPractice1Application {
 
 		executeSection4_17();
 		executeSection5_21();
+		executeSection6_23();
+		executeSection6_26();
+		executeSection6_28();
+		executeSection6_29();
 
 		executeSection4_12();
 		executeSection5_15();
@@ -65,35 +69,6 @@ public class MyBatisPractice1Application {
 
 	}
 
-	private void executeSection4_17() {
-
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection4_17");
-		List<FloorPlan> list = floorPlanRepository.selectAll();
-		list.forEach(floorPlan -> System.out.println(
-				"id［" + floorPlan.getId() + "］, " +
-						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
-						"mansions［" + floorPlan.getMansions() + "］"));
-		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection4_17");
-
-	}
-
-	private void executeSection5_21() {
-
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection5_21()");
-		//		List<FloorPlan> list = floorPlanRepository.selectById(3);
-		//		list.forEach(floorPlan -> System.out.println(
-		//				"id［" + floorPlan.getId() + "］, " +
-		//						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
-		//						"mansions［" + floorPlan.getMansions() + "］"));
-		FloorPlan floorPlan = floorPlanRepository.selectById(3);
-		System.out.println(
-				"id［" + floorPlan.getId() + "］, " +
-						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
-						"mansions［" + floorPlan.getMansions() + "］");
-		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection5_21()");
-
-	}
-
 	private void executeSection4_12() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection4_12()");
@@ -107,7 +82,6 @@ public class MyBatisPractice1Application {
 						"buildingDate［" + mansion.getBuildingDate() + "］, " +
 						"status［" + mansion.getStatus() + "］, " +
 						"floorPlan［" + mansion.getFloorPlan() + "］"));
-		// System.out.println(list);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection4_12()");
 
 	}
@@ -125,7 +99,6 @@ public class MyBatisPractice1Application {
 						"buildingDate［" + mansion.getBuildingDate() + "］, " +
 						"status［" + mansion.getStatus() + "］, " +
 						"floorPlan［" + mansion.getFloorPlan() + "］");
-		// System.out.println(mansion);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection5_15()");
 
 	}
@@ -136,7 +109,17 @@ public class MyBatisPractice1Application {
 		Mansion mansion = new Mansion();
 		mansion.setStatus(true);
 		List<Mansion> list = mansionRepository.selectByStatusBuildingDate(mansion);
-		System.out.println(list);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_16_1()");
 
 	}
@@ -148,7 +131,17 @@ public class MyBatisPractice1Application {
 		mansion.setStatus(true);
 		mansion.setBuildingDate(Date.valueOf("2010-05-01"));
 		List<Mansion> list = mansionRepository.selectByStatusBuildingDate(mansion);
-		System.out.println(list);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_16_2()");
 
 	}
@@ -158,7 +151,17 @@ public class MyBatisPractice1Application {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_17_1()");
 		Mansion mansion = new Mansion();
 		List<Mansion> list = mansionRepository.selectByFloorPlanIdBuildingDateStatus(mansion);
-		System.out.println(list);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_17_1()");
 
 	}
@@ -169,7 +172,17 @@ public class MyBatisPractice1Application {
 		Mansion mansion = new Mansion();
 		mansion.setFloorPlanId(1);
 		List<Mansion> list = mansionRepository.selectByFloorPlanIdBuildingDateStatus(mansion);
-		System.out.println(list);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_17_2()");
 
 	}
@@ -180,7 +193,17 @@ public class MyBatisPractice1Application {
 		Mansion mansion = new Mansion();
 		mansion.setBuildingDate(Date.valueOf("2010-01-01"));
 		List<Mansion> list = mansionRepository.selectByFloorPlanIdBuildingDateStatus(mansion);
-		System.out.println(list);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_17_3()");
 
 	}
@@ -192,7 +215,17 @@ public class MyBatisPractice1Application {
 		mansion.setFloorPlanId(1);
 		mansion.setBuildingDate(Date.valueOf("2010-01-01"));
 		List<Mansion> list = mansionRepository.selectByFloorPlanIdBuildingDateStatus(mansion);
-		System.out.println(list);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_17_4()");
 
 	}
@@ -202,7 +235,17 @@ public class MyBatisPractice1Application {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_18()");
 		List<Integer> idList = Arrays.asList(1, 2, 4);
 		List<Mansion> list = mansionRepository.selectByIdIN(idList);
-		System.out.println(list);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_18()");
 
 	}
@@ -211,7 +254,17 @@ public class MyBatisPractice1Application {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_19");
 		List<Mansion> list = mansionRepository.selectByStationLike("宮");
-		System.out.println(list);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_19");
 
 	}
@@ -220,10 +273,33 @@ public class MyBatisPractice1Application {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_20()");
 		Mansion mansion = new Mansion();
+		List<Mansion> list = mansionRepository.selectByNameStation(mansion);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
+		System.out.println("--------------------------- executeSection6_23()");
 		mansion.setName("ローズガーデンハイツ");
 		mansion.setStation("大井町駅");
-		List<Mansion> list = mansionRepository.selectByNameStation(mansion);
-		System.out.println(list);
+		list = mansionRepository.selectByNameStation(mansion);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+			"address［" + mnsn.getAddress() + "］, " +
+			"station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+			"status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_20()");
 
 	}
@@ -281,6 +357,125 @@ public class MyBatisPractice1Application {
 		Mansion result = mansionRepository.selectByIdWithFloorPlan(2);
 		System.out.println("result：" + result);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection8_24()");
+
+	}
+
+	private void executeSection4_17() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection4_17");
+		List<FloorPlan> list = floorPlanRepository.selectAll();
+		list.forEach(floorPlan -> System.out.println(
+				"id［" + floorPlan.getId() + "］, " +
+						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
+						"mansions［" + floorPlan.getMansions() + "］"));
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection4_17");
+
+	}
+
+	private void executeSection5_21() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection5_21()");
+		//		List<FloorPlan> list = floorPlanRepository.selectById(3);
+		//		list.forEach(floorPlan -> System.out.println(
+		//				"id［" + floorPlan.getId() + "］, " +
+		//						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
+		//						"mansions［" + floorPlan.getMansions() + "］"));
+		FloorPlan floorPlan = floorPlanRepository.selectById(3);
+		System.out.println(
+				"id［" + floorPlan.getId() + "］, " +
+						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
+						"mansions［" + floorPlan.getMansions() + "］");
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection5_21()");
+
+	}
+
+	private void executeSection6_23() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_23()");
+		Mansion mansion = new Mansion();
+		mansion.setFloorPlanId(1);
+		List<Mansion> list = mansionRepository.selectByFloorPlanIdBuildingDate(mansion);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+		//  "address［" + mnsn.getAddress() + "］, " +
+		//  "station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+		//  "status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
+		System.out.println("--------------------------- executeSection6_23()");
+		mansion.setBuildingDate(Date.valueOf("2010-01-01"));
+		list = mansionRepository.selectByFloorPlanIdBuildingDate(mansion);
+		// @formatter:off
+		list.forEach(mnsn -> System.out.println(
+			"id［" + mnsn.getId() + "］, " +
+			"name［" + mnsn.getName() + "］, " +
+		//  "address［" + mnsn.getAddress() + "］, " +
+		//  "station［" + mnsn.getStation() + "］, " +
+			"floorPlanId［" + mnsn.getFloorPlanId() + "］, " +
+			"buildingDate［" + mnsn.getBuildingDate() + "］, " +
+		//  "status［" + mnsn.getStatus() + "］, " +
+			"floorPlan［" + mnsn.getFloorPlan() + "］"));
+		// @formatter:on
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_23()");
+
+	}
+
+	private void executeSection6_26() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_26()");
+		List<Integer> idList = Arrays.asList(1, 2, 4);
+
+		List<FloorPlan> list = floorPlanRepository.selectByIdIN(idList);
+		// @formatter:off
+		list.forEach(floorPlan -> System.out.println(
+			"id［" + floorPlan.getId() + "］, " +
+			"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
+			"mansions［" + floorPlan.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_26()");
+
+	}
+
+	private void executeSection6_28() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_28()");
+		List<FloorPlan> list = floorPlanRepository.selectByFloorPlanNameLike("LDK");
+		// @formatter:off
+		list.forEach(floorPlan -> System.out.println(
+			"id［" + floorPlan.getId() + "］, " +
+			"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
+			"mansions［" + floorPlan.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_28()");
+
+	}
+
+	private void executeSection6_29() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_29()");
+		FloorPlan floorPlan = new FloorPlan();
+		List<FloorPlan> list = floorPlanRepository.selectByTrim(floorPlan);
+		// @formatter:off
+		list.forEach(fP -> System.out.println(
+			"id［" + fP.getId() + "］, " +
+			"floorPlanName［" + fP.getFloorPlanName() + "］, " +
+			"mansions［" + fP.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("--------------------------- executeSection6_23()");
+		floorPlan.setId(3);
+		floorPlan.setFloorPlanName("3LDK");
+		list = floorPlanRepository.selectByTrim(floorPlan);
+		// @formatter:off
+		list.forEach(fP -> System.out.println(
+			"id［" + fP.getId() + "］, " +
+			"floorPlanName［" + fP.getFloorPlanName() + "］, " +
+			"mansions［" + fP.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_29()");
 
 	}
 

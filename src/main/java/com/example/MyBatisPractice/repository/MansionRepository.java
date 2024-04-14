@@ -29,4 +29,6 @@ public interface MansionRepository {
 
 	public Mansion selectByIdWithFloorPlan(Integer id);
 
+	public List<Mansion> selectByFloorPlanIdBuildingDate(Mansion mansion);
+
 }

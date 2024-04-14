@@ -114,9 +114,9 @@ WHERE
 
 	<!-- Section6_19：○○を含む -->
 	<select id="selectByStationLike" resultType="Mansion">
-		<!-- _parameter または parameter でも両方ちゃんと動く。推奨は、前者の模様。 -->
-		<!-- <bind name="bindName1" value="'%' + _parameter + '%'" /> -->
-		<bind name="bindName1" value="'%' + parameter + '%'" />
+		<!-- _parameter または parameter でも両方ちゃんと動く。推奨は前者の模様。 -->
+		<bind name="bindName1" value="'%' + _parameter + '%'" />
+		<!-- <bind name="bindName1" value="'%' + parameter + '%'" /> -->
 SELECT
       id
     , name
@@ -224,4 +224,29 @@ FROM
 WHERE
 	m.id = #{id}
 	</select>
+
+	<!-- Section6_23：New！練習問題：＜if＞ -->
+	<!-- parameterType を省略しても構わない。
+	<select id="selectByFloorPlanIdBuildingDate" resultType="Mansion" parameterType="Mansion">
+	-->
+	<select id="selectByFloorPlanIdBuildingDate" resultType="Mansion">
+SELECT
+      id
+    , name
+    , address
+    , station
+    , floor_plan_id AS floorPlanId
+    , building_date AS buildingDate
+    , status
+FROM
+    mansion
+WHERE
+	floor_plan_id = #{floorPlanId}
+    <if test="buildingDate != null">
+		<![CDATA[
+		AND #{buildingDate} <= building_date 
+		]]>
+	</if>
+	</select>
+
 </mapper>

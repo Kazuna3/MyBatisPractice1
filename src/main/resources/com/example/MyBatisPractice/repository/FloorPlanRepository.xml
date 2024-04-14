@@ -5,28 +5,6 @@
 <mapper
     namespace="com.example.MyBatisPractice.repository.FloorPlanRepository">
 
-	<!-- Section4_17：練習問題：FloorPlanテーブルから全件取得 -->
-	<select id="selectAll" resultType="FloorPlan">
-SELECT
-      id
-    , floor_plan_name AS floorPlanName
-FROM
-    floor_plan
-	</select>
-
-	<!-- Section5_21：練習問題：FloorPlanテーブルから１件取得 -->
-	<!-- <select id="selectById" resultType="FloorPlan" parameterType="int"> -->
-	<!-- int を Integer としても、ちゃんと動く。 -->
-	<select id="selectById" resultType="FloorPlan" parameterType="Integer">
-SELECT
-      id
-    , floor_plan_name AS floorPlanName
-FROM
-    floor_plan
-WHERE
-	id = #{id}
-	</select>
-
 	<!-- Section8：<resultMap> 複数のテーブルを結合する！複雑だけど、ゆっくり学習しよう！ -->
 
 	<!-- Section8_23：collection（１対多） -->
@@ -64,6 +42,83 @@ FROM
 	mansion m INNER JOIN floor_plan f ON m.floor_plan_id = f.id
 WHERE
 	m.floor_plan_id = #{id}
+	</select>
+
+	<!-- Section4_17：New！練習問題：FloorPlanテーブルから全件取得 -->
+	<select id="selectAll" resultType="FloorPlan">
+SELECT
+      id
+    , floor_plan_name AS floorPlanName
+FROM
+    floor_plan
+	</select>
+
+	<!-- Section5_21：New！練習問題：FloorPlanテーブルから１件取得 -->
+	<!-- <select id="selectById" resultType="FloorPlan" parameterType="int"> -->
+	<!-- int を Integer としても、ちゃんと動く。 -->
+	<select id="selectById" resultType="FloorPlan" parameterType="Integer">
+SELECT
+      id
+    , floor_plan_name AS floorPlanName
+FROM
+    floor_plan
+WHERE
+	id = #{id}
+	</select>
+
+	<!-- Section6_26：New！練習問題：<foreach> -->
+	<!--
+		次の①②③は何れも動く。よって一番シンプルな③が無難で良い。④はエラーになる。
+		①②が共に動く理由は良く分かっていない。
+	-->
+	<!-- ① <select id="selectByIdIN" resultType="FloorPlan" parameterType="List"> -->
+	<!-- ② <select id="selectByIdIN" resultType="FloorPlan" parameterType="int"> -->
+	<!-- ③ <select id="selectByIdIN" resultType="FloorPlan"> -->
+	<!-- ④ <select id="selectByIdIN" resultType="FloorPlan" parameterType="hoge"> -->
+	<select id="selectByIdIN" resultType="FloorPlan">
+SELECT
+      id
+    , floor_plan_name AS floorPlanName
+FROM
+    floor_plan
+WHERE
+	id IN
+	<foreach item="idList" collection="list" open="(" separator="," close=")">
+		#{idList}
+	</foreach>
+	</select>
+
+	<!-- Section6_28：New！練習問題：<bind> -->
+	<select id="selectByFloorPlanNameLike" resultType="FloorPlan">
+		<bind name="bindName1" value="'%' + _parameter + '%'" />
+SELECT
+      id
+    , floor_plan_name AS floorPlanName
+FROM
+    floor_plan
+WHERE
+	floor_plan_name LIKE #{bindName1}
+	</select>
+
+	<!-- Section6_29()：TRIM（動的 SQL）の試行錯誤 -->
+	<select id="selectByTrim" resultType="FloorPlan">
+SELECT
+      id
+    , floor_plan_name AS floorPlanName
+FROM
+    floor_plan
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="id!=null">
+			id=#{id}
+		</if>	
+		<!--  <if test="floor_plan_name!=null"> -->
+		<if test="floorPlanName!=null">
+			<!--  OR floor_plan_name=#{floorPlanName} -->
+			OR floor_plan_name=#{floorPlanName}
+			<!--  OR floor_plan_name=#{floor_plan_name} -->
+			<!--  OR floorPlanName=#{floorPlanName} -->
+		</if>
+	</trim>
 	</select>
 
 </mapper>
