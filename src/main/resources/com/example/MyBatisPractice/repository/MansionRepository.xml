@@ -22,6 +22,8 @@ FROM
 
 	<!-- Section5_15：１件取得 -->
 	<select id="selectById" resultType="Mansion" parameterType="int">
+	<!-- int を Integer としても、ちゃんと動く。 -->
+	<!-- <select id="selectById" resultType="Mansion" parameterType="Integer"> -->
     <![CDATA[
 SELECT
       id

@@ -43,6 +43,9 @@ public class MyBatisPractice1Application {
 
 	private void execute() {
 
+		executeSection4_17();
+		executeSection5_21();
+
 		executeSection4_12();
 		executeSection5_15();
 		executeSection6_16_1();
@@ -59,6 +62,35 @@ public class MyBatisPractice1Application {
 		executeSection7_22();
 		executeSection8_23();
 		executeSection8_24();
+
+	}
+
+	private void executeSection4_17() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection4_17");
+		List<FloorPlan> list = floorPlanRepository.selectAll();
+		list.forEach(floorPlan -> System.out.println(
+				"id［" + floorPlan.getId() + "］, " +
+						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
+						"mansions［" + floorPlan.getMansions() + "］"));
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection4_17");
+
+	}
+
+	private void executeSection5_21() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection5_21()");
+		//		List<FloorPlan> list = floorPlanRepository.selectById(3);
+		//		list.forEach(floorPlan -> System.out.println(
+		//				"id［" + floorPlan.getId() + "］, " +
+		//						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
+		//						"mansions［" + floorPlan.getMansions() + "］"));
+		FloorPlan floorPlan = floorPlanRepository.selectById(3);
+		System.out.println(
+				"id［" + floorPlan.getId() + "］, " +
+						"floorPlanName［" + floorPlan.getFloorPlanName() + "］, " +
+						"mansions［" + floorPlan.getMansions() + "］");
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection5_21()");
 
 	}
 

@@ -5,16 +5,38 @@
 <mapper
     namespace="com.example.MyBatisPractice.repository.FloorPlanRepository">
 
+	<!-- Section4_17：練習問題：FloorPlanテーブルから全件取得 -->
+	<select id="selectAll" resultType="FloorPlan">
+SELECT
+      id
+    , floor_plan_name AS floorPlanName
+FROM
+    floor_plan
+	</select>
+
+	<!-- Section5_21：練習問題：FloorPlanテーブルから１件取得 -->
+	<!-- <select id="selectById" resultType="FloorPlan" parameterType="int"> -->
+	<!-- int を Integer としても、ちゃんと動く。 -->
+	<select id="selectById" resultType="FloorPlan" parameterType="Integer">
+SELECT
+      id
+    , floor_plan_name AS floorPlanName
+FROM
+    floor_plan
+WHERE
+	id = #{id}
+	</select>
+
 	<!-- Section8：<resultMap> 複数のテーブルを結合する！複雑だけど、ゆっくり学習しよう！ -->
 
 	<!-- Section8_23：collection（１対多） -->
 	<resultMap id="floorPlanResult" type="FloorPlan">
 		<!-- 主キー -->
 		<id property="id" column="id" />
-		
+
 		<!-- 主キー以外 -->
 		<result property="floorPlanName" column="floor_plan_name" />
-		
+
 		<collection property="mansions" ofType="Mansion">
 			<id property="id" column="id" />
 			<result property="name" column="name" />
@@ -25,7 +47,7 @@
 			<result property="status" column="status" />
 		</collection>
 	</resultMap>
-	
+
 	<!-- Section8_23：collection（１対多） -->
 	<select id="selectByFloorPlanIdWithMansion" resultMap="floorPlanResult" >
 SELECT

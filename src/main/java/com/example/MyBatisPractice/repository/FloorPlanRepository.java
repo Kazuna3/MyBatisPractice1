@@ -11,4 +11,9 @@ public interface FloorPlanRepository {
 
 	public List<FloorPlan> selectByFloorPlanIdWithMansion(Integer id);
 
+	public List<FloorPlan> selectAll();
+
+	// public List<FloorPlan> selectById(Integer id);
+	public FloorPlan selectById(Integer id);
+
 }
