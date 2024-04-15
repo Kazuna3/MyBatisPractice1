@@ -22,4 +22,10 @@ public interface FloorPlanRepository {
 
 	public List<FloorPlan> selectByTrim(FloorPlan floorPlan);
 
+	public Boolean insert_01(FloorPlan floorPlan);
+
+	public Boolean update_01(FloorPlan floorPlan);
+
+	public Boolean update_02(FloorPlan floorPlan);
+
 }

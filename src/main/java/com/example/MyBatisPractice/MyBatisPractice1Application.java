@@ -50,6 +50,10 @@ public class MyBatisPractice1Application {
 		executeSection6_28();
 		executeSection6_29();
 
+		// executeSection7_31();
+		// executeSection7_33();
+		// executeSection7_XX();
+
 		executeSection4_12();
 		executeSection5_15();
 		executeSection6_16_1();
@@ -344,7 +348,7 @@ public class MyBatisPractice1Application {
 	private void executeSection8_23() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection8_23()");
-		//List<FloorPlan> result = floorPlanRepository.selectByFloorPlanIdWithMansion(2);
+		// List<FloorPlan> result = floorPlanRepository.selectByFloorPlanIdWithMansion(2);
 		List<FloorPlan> result = floorPlanRepository.selectByFloorPlanIdWithMansion(4);
 		System.out.println("result：" + result);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection8_23()");
@@ -476,6 +480,96 @@ public class MyBatisPractice1Application {
 			"mansions［" + fP.getMansions() + "］"));
 		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection6_29()");
+
+	}
+
+	private void executeSection7_31() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection7_31()");
+		System.out.println("■Insert 実行前");
+		List<FloorPlan> list = floorPlanRepository.selectByFloorPlanNameLike("4LDK");
+		// @formatter:off
+		list.forEach(fP -> System.out.println(
+			"id［" + fP.getId() + "］, " +
+			"floorPlanName［" + fP.getFloorPlanName() + "］, " +
+			"mansions［" + fP.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("--------------------------- executeSection7_31()");
+		FloorPlan floorPlan = new FloorPlan();
+		floorPlan.setFloorPlanName("4LDK");
+		Boolean isSuccess = floorPlanRepository.insert_01(floorPlan);
+		System.out.println("★Insert 処理成功？（true なら成功です）：" + isSuccess);
+		System.out.println("--------------------------- executeSection7_31()");
+		System.out.println("◆Insert 実行後");
+		list = floorPlanRepository.selectByFloorPlanNameLike("4LDK");
+		// @formatter:off
+		list.forEach(fP -> System.out.println(
+			"id［" + fP.getId() + "］, " +
+			"floorPlanName［" + fP.getFloorPlanName() + "］, " +
+			"mansions［" + fP.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection7_31()");
+
+	}
+
+	private void executeSection7_33() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection7_33()");
+		System.out.println("■Update 実行前");
+		List<FloorPlan> list = floorPlanRepository.selectByFloorPlanNameLike("10LDK");
+		// @formatter:off
+		list.forEach(fP -> System.out.println(
+			"id［" + fP.getId() + "］, " +
+			"floorPlanName［" + fP.getFloorPlanName() + "］, " +
+			"mansions［" + fP.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("--------------------------- executeSection7_33()");
+		FloorPlan floorPlan = new FloorPlan();
+		floorPlan.setId(3);
+		floorPlan.setFloorPlanName("10LDK");
+		Boolean isSuccess = floorPlanRepository.update_01(floorPlan);
+		System.out.println("★Update 処理成功？（true なら成功です）：" + isSuccess);
+		System.out.println("--------------------------- executeSection7_33()");
+		System.out.println("◆Update 実行後");
+		list = floorPlanRepository.selectByFloorPlanNameLike("10LDK");
+		// @formatter:off
+		list.forEach(fP -> System.out.println(
+			"id［" + fP.getId() + "］, " +
+			"floorPlanName［" + fP.getFloorPlanName() + "］, " +
+			"mansions［" + fP.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection7_33()");
+
+	}
+
+	// <!-- Section7_XX()：New！自主練習問題：UPDATE -->
+	private void executeSection7_XX() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection7_XX()");
+		System.out.println("■Update 実行前");
+		List<FloorPlan> list = floorPlanRepository.selectByFloorPlanNameLike("100LDK");
+		// @formatter:off
+		list.forEach(fP -> System.out.println(
+			"id［" + fP.getId() + "］, " +
+			"floorPlanName［" + fP.getFloorPlanName() + "］, " +
+			"mansions［" + fP.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("--------------------------- executeSection7_XX()");
+		FloorPlan floorPlan = new FloorPlan();
+		floorPlan.setId(1);
+		floorPlan.setFloorPlanName("100LDK");
+		Boolean isSuccess = floorPlanRepository.update_02(floorPlan);
+		System.out.println("★Update 処理成功？（true なら成功です）：" + isSuccess);
+		System.out.println("--------------------------- executeSection7_XX()");
+		System.out.println("◆Update 実行後");
+		list = floorPlanRepository.selectByFloorPlanNameLike("100LDK");
+		// @formatter:off
+		list.forEach(fP -> System.out.println(
+			"id［" + fP.getId() + "］, " +
+			"floorPlanName［" + fP.getFloorPlanName() + "］, " +
+			"mansions［" + fP.getMansions() + "］"));
+		// @formatter:on
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSection7_XX()");
 
 	}
 

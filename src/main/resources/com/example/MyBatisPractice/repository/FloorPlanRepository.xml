@@ -121,4 +121,36 @@ FROM
 	</trim>
 	</select>
 
+	<!-- Section7_31()：New！練習問題：INSERT -->
+	<insert id="insert_01" parameterType="FloorPlan">
+INSERT INTO floor_plan( 
+	floor_plan_name
+) 
+VALUES ( 
+	#{floorPlanName}
+)
+	</insert>
+
+	<!-- Section7_33()：New！練習問題：UPDATE -->
+	<update id="update_01" parameterType="FloorPlan">
+UPDATE floor_plan 
+<set>
+	<if test="floorPlanName != null">
+		floor_plan_name = #{floorPlanName}
+	</if>
+</set>
+WHERE
+    id = #{id}
+	</update>
+
+	<!-- Section7_XX()：New！自主練習問題：UPDATE -->
+	<update id="update_02" parameterType="FloorPlan">
+UPDATE
+	floor_plan 
+SET
+	floor_plan_name = #{floorPlanName}
+WHERE
+    id = #{id}
+	</update>
+
 </mapper>
