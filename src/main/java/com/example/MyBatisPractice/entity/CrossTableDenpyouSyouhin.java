@@ -15,6 +15,7 @@ public class CrossTableDenpyouSyouhin implements Serializable {
 	,	urine INTEGER
 	,	foreign key (denpyou_id) references denpyou (denpyou_id)
 	,	foreign key (syouhin_id) references syouhin (syouhin_id)
+	,	PRIMARY KEY (denpyou_id, syouhin_id)
 	);
 	 */
 
@@ -27,8 +28,13 @@ public class CrossTableDenpyouSyouhin implements Serializable {
 	// urine INTEGER
 	private Integer urine;
 
-	// １対多の１側の為、List にはしない。
+	// １対多の１側の為、List などの Collection にしない。
+	private Employee employee;
+
+	// １対多の１側の為、List などの Collection にしない。
 	private Denpyou denpyou;
+
+	// １対多の１側の為、List などの Collection にしない。
 	private Syouhin syouhin;
 
 }

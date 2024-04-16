@@ -604,18 +604,24 @@ public class MyBatisPractice1Application {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSectionMhr_01()");
 		// System.out.println("■Update 実行前");
-		List<CrossTableDenpyouSyouhin> list = crossTableDenpyouSyouhinRepository.selectByDenpyouId(1);
+		List<CrossTableDenpyouSyouhin> list = crossTableDenpyouSyouhinRepository.selectByDenpyouId(3);
 		// @formatter:off
 		list.forEach(cts -> System.out.println(
 			"denpyou_id［" + cts.getDenpyouId() + "］, " +
 			"syouhin_id［" + cts.getSyouhinId() + "］, " +
 			"urine［" + cts.getUrine() + "］, " +
-			// １対多の１側の為、List にはしない。
+
+			// １対多の１側の為、List などの Collection にしない。
+			// private Employee employee;
+			"employee［" + cts.getEmployee() + "］, " +
+
+			// １対多の１側の為、List などの Collection にしない。
 			// private Denpyou denpyou;
 			"denpyou［" + cts.getDenpyou() + "］, " +
+
+			// １対多の１側の為、List などの Collection にしない。
 			// private Syouhin syouhin;
-			"syouhin［" + cts.getSyouhin() + "］, " +
-			"urine［" + cts.getUrine() + "］"));
+			"syouhin［" + cts.getSyouhin() + "］"));
 		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSectionMhr_01()");
 
