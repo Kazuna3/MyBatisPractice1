@@ -105,6 +105,7 @@ CREATE TABLE cross_table_denpyou_syouhin
 	,	urine INTEGER
 	,	foreign key (denpyou_id) references denpyou (denpyou_id)
 	,	foreign key (syouhin_id) references syouhin (syouhin_id)
+	,	PRIMARY KEY (denpyou_id, syouhin_id)
 );
 
 INSERT INTO cross_table_denpyou_syouhin (
@@ -118,48 +119,6 @@ VALUES
 	,	(2, 2, 500)
 	,	(3, 1, 200)
 	,	(3, 2, 300)
-	,	(3, 2, 500)
+--	,	(3, 2, 500)
+--	,	(3, 2, 500)
 	,	(3, 3, 800);
-
-
--- SELECT
-	/*
-	*
-	*/
-	/*
-	id のカラム限定
-	*/
--- /**/
--- 		emp.emp_id			AS emp_emp_id
--- 	,	den.emp_id			AS den_emp_id
--- 
--- 	,	den.denpyou_id		AS den_denpyou_id
--- 	,	ct.denpyou_id		AS ct_denpyou_id
--- 
--- 	,	ct.syouhin_id		AS ct_syouhin_id
--- 	,	hin.syouhin_id		AS hin_syouhin_id
--- /**/
----------------------
--- /*
--- 		emp.emp_id			AS emp_emp_id
--- 	,	emp.emp_name
--- 	,	emp.emp_name_kana
--- 	,	emp.emp_age
--- 	,	emp.emp_hiredate
--- 	,	den.denpyou_id		AS den_denpyou_id
--- 	,	den.hakkou_date
--- 	,	den.emp_id			AS den_emp_id
--- 	,	ct.denpyou_id		AS ct_denpyou_id
--- 	,	ct.syouhin_id		AS ct_syouhin_id
--- 	,	ct.urine
--- 	,	hin.syouhin_id		AS hin_syouhin_id
--- 	,	hin.syouhin_name
--- 	,	hin.syouhin_genka
--- */
--- FROM
--- 				employee					emp
--- 	INNER JOIN	denpyou 					den	ON emp.emp_id		= den.emp_id
--- 	INNER JOIN	cross_table_denpyou_syouhin	ct	ON den.denpyou_id	= ct.denpyou_id
--- 	INNER JOIN	syouhin						hin	ON ct.syouhin_id	= hin.syouhin_id
--- WHERE
--- 	den.denpyou_id = 3
