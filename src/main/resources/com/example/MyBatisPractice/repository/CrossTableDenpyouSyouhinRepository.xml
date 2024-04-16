@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.example.MyBatisPractice.repository.CrossTableDenpyouSyouhinRepository">
+
+	<resultMap id="hoge" type="CrossTableDenpyouSyouhin">
+		<!-- 主キー -->
+		<id property="denpyouId" column="denpyou_id" />
+
+		<!-- 主キー以外 -->
+		<result property="syouhinId" column="syouhin_id" />
+		<result property="urine" column="urine" />
+
+		<association property="denpyou" javaType="Denpyou">
+			<id property="denpyouId" column="denpyou_id" />
+			<result property="hakkouDate" column="hakkou_date" />
+			<result property="empId" column="emp_id" />
+		</association>
+
+		<association property="syouhin" javaType="Syouhin">
+			<id property="syouhinId" column="syouhin_id" />
+			<result property="syouhinName" column="syouhin_name" />
+			<result property="syouhinGenka" column="syouhin_genka" />
+		</association>
+
+	</resultMap>
+
+	<select id="selectByDenpyouId" resultMap="hoge" >
+SELECT
+		emp.emp_id			AS empId
+	,	emp.emp_name		AS empName
+	,	emp.emp_name_kana	AS empNameKana
+	,	emp.emp_age			AS empAge
+	,	emp.emp_hiredate	AS empHiredate
+	,	den.denpyou_id		AS denpyouId
+	,	den.hakkou_date		AS hakkouDate
+--	,	den.emp_id			AS empId
+--	,	ct.denpyou_id		AS denpyouId
+	,	ct.syouhin_id		AS syouhinId
+	,	ct.urine
+--	,	hin.syouhin_id		AS syouhinId
+	,	hin.syouhin_name	AS syouhinName
+	,	hin.syouhin_genka	AS syouhinGenka
+FROM
+				employee					emp
+	INNER JOIN	denpyou 					den	ON emp.emp_id		= den.emp_id
+	INNER JOIN	cross_table_denpyou_syouhin	ct	ON den.denpyou_id	= ct.denpyou_id
+	INNER JOIN	syouhin						hin	ON ct.syouhin_id	= hin.syouhin_id
+WHERE
+	den.denpyou_id = #{id}
+	</select>
+
+</mapper>
