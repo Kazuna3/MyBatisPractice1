@@ -483,6 +483,7 @@ public class MyBatisPractice1Application {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void executeSection7_31() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection7_31()");
@@ -512,6 +513,7 @@ public class MyBatisPractice1Application {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void executeSection7_33() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection7_33()");
@@ -542,7 +544,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	// <!-- Section7_XX()：New！自主練習問題：UPDATE -->
+	@SuppressWarnings("unused")
 	private void executeSection7_XX() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection7_XX()");
