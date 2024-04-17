@@ -10,9 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.example.MyBatisPractice.entity.CrossTableDenpyouSyouhin;
+import com.example.MyBatisPractice.entity.Employee;
 import com.example.MyBatisPractice.entity.FloorPlan;
 import com.example.MyBatisPractice.entity.Mansion;
 import com.example.MyBatisPractice.repository.CrossTableDenpyouSyouhinRepository;
+import com.example.MyBatisPractice.repository.EmployeeDenpyouTelephoneRepository;
 import com.example.MyBatisPractice.repository.FloorPlanRepository;
 import com.example.MyBatisPractice.repository.MansionRepository;
 
@@ -32,6 +34,7 @@ public class MyBatisPractice1Application {
 	private final MansionRepository mansionRepository;
 	private final FloorPlanRepository floorPlanRepository;
 	private final CrossTableDenpyouSyouhinRepository crossTableDenpyouSyouhinRepository;
+	private final EmployeeDenpyouTelephoneRepository employeeDenpyouTelephoneRepository;
 
 	public static void main(String[] args) {
 
@@ -46,39 +49,50 @@ public class MyBatisPractice1Application {
 
 	private void execute() {
 
-		//		executeSection4_17();
-		//		executeSection5_21();
-		//		executeSection6_23();
-		//		executeSection6_26();
-		//		executeSection6_28();
-		//		executeSection6_29();
+		executeSection4_12();
+		executeSection5_15();
+		executeSection6_16_1();
+		executeSection6_16_2();
+		executeSection6_17_1();
+		executeSection6_17_2();
+		executeSection6_17_3();
+		executeSection6_17_4();
+		executeSection6_18();
+		executeSection6_19();
+		executeSection6_20();
 
+		// 次行はレコードを追加するので、コメントアウトしている。
+		// executeSection7_21();
+
+		executeSection7_22();
+		executeSection8_23();
+		executeSection8_24();
+
+		executeSection4_17();
+		executeSection5_21();
+		executeSection6_23();
+		executeSection6_26();
+		executeSection6_28();
+		executeSection6_29();
+
+		// 次行はレコードを追加するので、コメントアウトしている。
 		// executeSection7_31();
+
+		// 次行はレコードを更新するので、コメントアウトしている。
 		// executeSection7_33();
+
+		// 次行はレコードを更新するので、コメントアウトしている。
 		// executeSection7_XX();
 
+		// ４つのテーブルを結合しているサンプルである。（association を利用している）
 		executeSectionMhr_01();
 
-		//		executeSection4_12();
-		//		executeSection5_15();
-		//		executeSection6_16_1();
-		//		executeSection6_16_2();
-		//		executeSection6_17_1();
-		//		executeSection6_17_2();
-		//		executeSection6_17_3();
-		//		executeSection6_17_4();
-		//		executeSection6_18();
-		//		executeSection6_19();
-		//		executeSection6_20();
-		// 次行は、レコードが追加されるのでコメントアウトしている。
-		// executeSection7_21();
-		//		executeSection7_22();
-		//		executeSection8_23();
-		//		executeSection8_24();
+		// ３つのテーブルを結合しているサンプルである。（collection を利用している）
+		executeSectionMhr_02();
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection4_12() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection4_12()");
@@ -96,7 +110,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection5_15() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection5_15()");
@@ -114,7 +128,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_16_1() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_16_1()");
@@ -136,7 +150,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_16_2() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_16_2()");
@@ -159,7 +173,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_17_1() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_17_1()");
@@ -180,7 +194,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_17_2() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_17_2()");
@@ -202,7 +216,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_17_3() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_17_3()");
@@ -224,7 +238,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_17_4() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_17_4()");
@@ -247,7 +261,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_18() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_18()");
@@ -268,7 +282,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_19() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_19");
@@ -288,7 +302,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_20() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_20()");
@@ -342,7 +356,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection7_22() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection7_22()");
@@ -362,7 +376,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection8_23() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection8_23()");
@@ -373,7 +387,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection8_24() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection8_24()");
@@ -383,7 +397,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection4_17() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection4_17");
@@ -396,7 +410,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection5_21() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection5_21()");
@@ -414,7 +428,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_23() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_23()");
@@ -450,7 +464,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_26() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_26()");
@@ -467,7 +481,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_28() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_28()");
@@ -482,7 +496,7 @@ public class MyBatisPractice1Application {
 
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	private void executeSection6_29() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSection6_29()");
@@ -603,7 +617,6 @@ public class MyBatisPractice1Application {
 	private void executeSectionMhr_01() {
 
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSectionMhr_01()");
-		// System.out.println("■Update 実行前");
 		List<CrossTableDenpyouSyouhin> list = crossTableDenpyouSyouhinRepository.selectByDenpyouId(3);
 		// @formatter:off
 		list.forEach(cts -> System.out.println(
@@ -624,6 +637,28 @@ public class MyBatisPractice1Application {
 			"syouhin［" + cts.getSyouhin() + "］"));
 		// @formatter:on
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSectionMhr_01()");
+
+	}
+
+	private void executeSectionMhr_02() {
+
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> executeSectionMhr_02()");
+		List<Employee> list = employeeDenpyouTelephoneRepository.selectAll();
+		// @formatter:off
+		list.forEach(e -> System.out.println(
+			"empId［" + e.getEmpId() + "］, " +
+			"empName［" + e.getEmpName() + "］, " +
+			"empNameKana［" + e.getEmpNameKana() + "］, " +
+
+			// １対多の多側の為、List<Telephone> とする。
+			// private List<Telephone> telephones;
+			"telephones［" + e.getTelephones() + "］, " +
+
+			// １対多の多側の為、List<Denpyou> とする。
+			// private List<Denpyou> denpyous;
+			"denpyous［" + e.getDenpyous() + "］"));
+		// @formatter:on
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< executeSectionMhr_02()");
 
 	}
 

@@ -37,7 +37,7 @@
 		<association property="denpyou" javaType="Denpyou">
 			<id property="denpyouId" column="denpyouId" />
 			<result property="hakkouDate" column="hakkouDate" />
-			<result property="empId" column="empId" /> <!-- ??? -->
+			<result property="empId" column="empId" />
 		</association>
 
 		<association property="syouhin" javaType="Syouhin">

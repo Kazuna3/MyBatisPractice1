@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS mansion;
 DROP TABLE IF EXISTS floor_plan;
 DROP TABLE IF EXISTS cross_table_denpyou_syouhin;
 DROP TABLE IF EXISTS denpyou;
+DROP TABLE IF EXISTS telephone;
 DROP TABLE IF EXISTS employee;
 DROP TABLE IF EXISTS syouhin;
 
@@ -80,8 +81,11 @@ CREATE TABLE denpyou
 INSERT INTO denpyou (hakkou_date, emp_id)
 VALUES
 		('2024-04-10', 1)
-	,	('2024-04-11', 2)
-	,	('2024-04-11', 3);
+	,	('2024-04-11', 1)
+	,	('2024-04-12', 2)
+	,	('2024-04-13', 3)
+	,	('2024-04-13', 3)
+	,	('2024-04-14', 3);
 
 CREATE TABLE syouhin
 (
@@ -122,3 +126,37 @@ VALUES
 --	,	(3, 2, 500)
 --	,	(3, 2, 500)
 	,	(3, 3, 800);
+
+
+-- SELECT
+-- 	*
+-- FROM
+-- 				employee					emp
+-- 	INNER JOIN	denpyou 					den	ON emp.emp_id		= den.emp_id
+-- 	INNER JOIN	cross_table_denpyou_syouhin	ct	ON den.denpyou_id	= ct.denpyou_id
+-- 	INNER JOIN	syouhin						hin	ON ct.syouhin_id	= hin.syouhin_id
+-- WHERE
+-- 	den.denpyou_id = 3
+
+CREATE TABLE telephone(
+		number VARCHAR (100) PRIMARY KEY
+	,	owner_id INTEGER
+	,	foreign key (owner_id) references employee (emp_id)
+
+);
+
+INSERT INTO telephone (number, owner_id)
+VALUES
+		('123-456-7890', 1)
+	,	('1234-56-7890', 2)
+	,	('090-1234-5678', 4)
+	,	('090-2345-6789', 4);
+
+-- SELECT
+-- 	*
+-- FROM
+-- 					employee	emp
+-- 	LEFT OUTER JOIN telephone	tel ON tel.owner_id = emp.emp_id
+-- 	LEFT OUTER JOIN denpyou 	den	ON emp.emp_id	= den.emp_id
+-- ORDER BY
+-- 	emp.emp_id

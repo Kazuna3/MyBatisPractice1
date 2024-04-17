@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.example.MyBatisPractice.repository.EmployeeDenpyouTelephoneRepository">
+
+	<resultMap id="fuga" type="Employee">
+		<!-- 主キー -->
+		<!--
+		テーブル［cross_table_denpyou_syouhin］の CREATE TABLE 文にて、
+		［PRIMARY KEY (denpyou_id, syouhin_id)］で、複合キーを設定した場合は、
+		id tag を二つ使って次のように定義する。
+		因みに、テーブル［cross_table_denpyou_syouhin］の CREATE TABLE 文にて、
+		［PRIMARY KEY］を設定せずに、"denpyouId" を id tag で定義した場合、
+		その id tag で指定したレコードが複数あっても、一つしか出力されないようになるので、
+		注意すること。
+		-->
+		<id property="empId" column="empEmpId" />
+
+		<!-- 主キー以外 -->
+		<!--
+		テーブル［cross_table_denpyou_syouhin］の CREATE TABLE 文にて、
+		PRIMARY KEY を設定しない場合は、
+		result tag を二つ使って次のように定義する。
+		但し、主キーを持たないテーブルなので、整合性を崩さないように、
+		レコードの追加、更新、削除を、アプリ側で完璧に制御する必要が生じるので、
+		避けるべきである。
+		-->
+		<!--
+		<id property="empId" column="empEmpId" />
+		-->
+
+		<result property="empName" column="empEmpName" />
+		<result property="empNameKana" column="empEmpNameKana" />
+		<result property="empAge" column="empEmpAge" />
+		<result property="empHiredate" column="empEmpHiredate" />
+
+		<collection property="telephones" ofType="Telephone">
+			<id property="number" column="telNumber" />
+			<result property="ownerId" column="telOwnerId" />
+		</collection>
+
+		<collection property="denpyous" ofType="Denpyou">
+			<id property="denpyouId" column="denDenpyouId" />
+			<result property="hakkouDate" column="denHakkouDate" />
+			<result property="empId" column="denEmpId" />
+		</collection>
+
+	</resultMap>
+
+	<select id="selectAll" resultMap="fuga" >
+SELECT
+		emp.emp_id			AS empEmpId
+	,	emp.emp_name		AS empEmpName
+	,	emp.emp_name_kana	AS empEmpNameKana
+	,	emp.emp_age			AS empEmpAge
+	,	emp.emp_hiredate	AS empEmpHiredate
+	,	tel.number			AS telNumber
+	,	tel.owner_id		AS telOwnerId
+	,	den.denpyou_id		AS denDenpyouId
+	,	den.hakkou_date		AS denHakkouDate
+	,	den.emp_id			AS denEmpId
+FROM
+					employee	emp
+	LEFT OUTER JOIN telephone	tel ON tel.owner_id = emp.emp_id
+	LEFT OUTER JOIN denpyou 	den	ON emp.emp_id	= den.emp_id
+ORDER BY
+		emp.emp_id
+	,	den.denpyou_id
+	,	tel.number
+	</select>
+
+</mapper>

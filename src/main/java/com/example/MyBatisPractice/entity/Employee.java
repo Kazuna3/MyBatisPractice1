@@ -2,6 +2,7 @@ package com.example.MyBatisPractice.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -22,5 +23,11 @@ public class Employee implements Serializable {
 
 	// emp_hiredate date
 	private Date empHiredate;
+
+	// １対多の多側の為、List<Telephone> とする。
+	private List<Telephone> telephones;
+
+	// １対多の多側の為、List<Denpyou> とする。
+	private List<Denpyou> denpyous;
 
 }
