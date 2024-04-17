@@ -21,7 +21,7 @@ public class MansionTest {
 	MansionRepository mansionRepository;
 
 	@Test
-	void test() {
+	public void test() {
 
 		Mansion actual = mansionRepository.selectById(2);
 
