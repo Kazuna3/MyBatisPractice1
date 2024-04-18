@@ -1,0 +1,18 @@
+-- SELECT
+-- 	*
+-- FROM
+-- 				employee					emp
+-- 	INNER JOIN	denpyou 					den	ON emp.emp_id		= den.emp_id
+-- 	INNER JOIN	cross_table_denpyou_syouhin	ct	ON den.denpyou_id	= ct.denpyou_id
+-- 	INNER JOIN	syouhin						hin	ON ct.syouhin_id	= hin.syouhin_id
+-- WHERE
+-- 	den.denpyou_id = 3
+
+-- SELECT
+-- 	*
+-- FROM
+-- 					employee	emp
+-- 	LEFT OUTER JOIN telephone	tel ON tel.owner_id = emp.emp_id
+-- 	LEFT OUTER JOIN denpyou 	den	ON emp.emp_id	= den.emp_id
+-- ORDER BY
+-- 	emp.emp_id
